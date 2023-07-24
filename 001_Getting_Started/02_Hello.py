@@ -5,5 +5,5 @@ print('Hello Mom!!')
 # * Interactive Prompt:-
 # ^ python -i 02_Hello.py (quit() or exit() to close)
 
-# * Command as a program:-
+# * Argument as a program:-
 # ^ python -c "print('Hello Mom')"
