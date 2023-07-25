@@ -1,9 +1,11 @@
+import numpy as np
+from collections import defaultdict
+
 
 # ~ Built-in types
 
 # * 1. Boolean
 
-import numpy as np
 print(1 == 1)  # True
 print(True and False)  # False
 print(True or False)  # True
@@ -51,27 +53,64 @@ print(*a)
 
 # ^ (I) String: Already discussed
 
-# ^ (II) Tuples:  An ordered collection of n values of any type (n >= 0).
+# ^ (II) A tuple is similar to a list except that it is fixed-length and immutable. So the values in the tuple cannot be changed nor the values be added to or removed from the tuple. Tuples are commonly used for small collections of values that will not need to change, such as an IP address and port. Tuples are represented with parentheses instead of square brackets:
 
 a = (1, 2, 3)
 b = ('a', 1, 'python', (1, 2))
 # b[2] = 'something else'  #! TypeError: 'tuple' object does not support item assignment
 print(b[2])
 
-# ^ (IV) list: An ordered collection of n values (n >= 0)
+# A tuple with only one member must be defined(note the comma) this way:
+one_member_tuple = ('Only member')
+print(type(one_member_tuple))  # str
+one_member_tuple = ('Only member',)
+print(type(one_member_tuple))  # tuple
+one_member_tuple = 'Only member',  # No brackets
+print(type(one_member_tuple))  # tuple
+
+# ^ (III) list: The list type is probably the most commonly used collection type in Python. Despite its name, a list is more like an array in other languages, mostly JavaScript. In Python, a list is merely an ordered collection of valid Python values. A list can be created by enclosing values, separated by commas, in square brackets:
 
 a = [1, 2, 3]
 b = ['a', 1, 'python', (1, 2), [1, 2]]
+# List is mutable
 b[2] = 'something else'  # allowed
 print(b)
+nested_list = [['a', 'b', 'c'], [1, 2, 3]]
+# * 2nd last
+print(nested_list[-2])
+nested_list.append('prince')
+nested_list.insert(1, 'Batman')
+print(nested_list)
+print(nested_list.index('prince'), len(
+    nested_list), nested_list.count('prince'))
+# ! Error
+# print(nested_list.index('pri'))
+nested_list.reverse()
+print(nested_list.pop())
+print(nested_list)
 
-# ^ (V) Set: An unordered collection of unique values. Items must be hashable.
+
+# ^ (IV) Set: A set is a collection of elements with no repeats and without insertion order but sorted order. They are used in situations where it is only important that some things are grouped together, and not what order they were included. For large groups of data, it is much faster to check whether or not an element is in a set than it is to do the same for a list.
+
 a = {1, 2, 'a', 2}
 print(a)  # {1, 2, 'a'}
+if 2 in a:
+    print("Yes we found the victim :)")
 
-# ^ dict : An unordered collection of unique key-value pairs; keys must be hashable
+# ^ (V) dict : A dictionary in Python is a collection of key-value pairs. The dictionary is surrounded by curly braces. Each pair is separated by a comma and the key and value are separated by a colon. Here is an example:
+
 a = {1: 'one', 2: 'two', 'five': '5'}
 print(a['five'])
+# print(a['f'])  # ! Error
+
+# ?  To resolve this use defaultDict as shown
+b = defaultdict(lambda: 'default', a)
+print(b["fivee"], b["five"])
+
+# * Loop over dict:
+for k in a.keys():
+    print('{} is {}'.format(a[k], k))
+
 
 # ~ Built-in Constants
 
