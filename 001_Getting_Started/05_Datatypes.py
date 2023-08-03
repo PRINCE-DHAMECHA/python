@@ -1,6 +1,7 @@
 import numpy as np
 from collections import defaultdict
 
+# * Data types are nothing but variables you use to reserve some space in memory. Python variables do not need an explicit declaration to reserve memory space. The declaration happens automatically when you assign a value to a variable.
 
 # ~ Built-in types
 
@@ -26,11 +27,13 @@ print(a)
 # ^ (II) float:-
 
 a = 5817252738.123123123123
-print(a)  # 5817252738.123123
+print(a, type(a))  # 5817252738.123123
 a = 100.e2
 print(a)  # 10000.0
 a = 103123.e35
-print(a)  # 1.03123e+40
+print(a, type(a))  # 1.03123e+40
+a = 103123055045401005
+print(a, type(a))  # 1.03123e+40
 
 # ^ (III) Complex Number:-
 
@@ -39,6 +42,7 @@ a = 2 + 1j
 print(a)
 
 # * 3. Strings
+# String are identified as a contiguous set of characters represented in the quotation marks. Python allows for either pairs of single or double quotes. Strings are immutable sequence data type, i.e each time one makes any changes to a string, completely new string object is created.
 
 # str: a unicode string. The type of 'hello'
 print(type('hello'))  # <class 'str'>
@@ -75,6 +79,7 @@ b = ['a', 1, 'python', (1, 2), [1, 2]]
 # List is mutable
 b[2] = 'something else'  # allowed
 print(b)
+print(a*2)  # will give a's element twice
 nested_list = [['a', 'b', 'c'], [1, 2, 3]]
 # * 2nd last
 print(nested_list[-2])
@@ -97,6 +102,19 @@ print(a)  # {1, 2, 'a'}
 if 2 in a:
     print("Yes we found the victim :)")
 
+# ~ FrozenSet
+
+frz = frozenset({1, 2, 3, 4, 1})
+print(frz)
+frz = frozenset('fdsfsdf')
+print(frz)
+frz = frozenset([1, 3, 1, 23, 1, 23])
+print(frz)
+frz = frozenset((1, 3, 1, 23, 1, 23))
+print(frz)
+# frz = frozenset(1)  # ! TypeError: 'int' object is not iterable
+
+
 # ^ (V) dict : A dictionary in Python is a collection of key-value pairs. The dictionary is surrounded by curly braces. Each pair is separated by a comma and the key and value are separated by a colon. Here is an example:
 
 a = {1: 'one', 2: 'two', 'five': '5'}
@@ -106,6 +124,9 @@ print(a['five'])
 # ?  To resolve this use defaultDict as shown
 b = defaultdict(lambda: 'default', a)
 print(b["fivee"], b["five"])
+
+print(b.keys())
+print(b.values())
 
 # * Loop over dict:
 for k in a.keys():
