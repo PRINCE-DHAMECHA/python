@@ -1,0 +1,21 @@
+import datetime
+
+today = datetime.date.today()
+new_year = datetime.date(2017, 1, 1)
+print(today)
+print(new_year)
+
+noon = datetime.time(12, 0, 0)
+print(noon)
+
+now = datetime.datetime.now()
+print(now)
+
+millenium_turn = datetime.datetime(2000, 1, 1, 1, 0, 0)
+print(millenium_turn)
+
+print(type(noon), type(now))
+# print(noon-now)  # ! Supported within same datatype
+
+new_today = datetime.datetime(today.year, today.month, today.day)
+print(new_today - millenium_turn)
