@@ -121,6 +121,12 @@ a = {1: 'one', 2: 'two', 'five': '5'}
 print(a['five'])
 # print(a['f'])  # ! Error
 
+# If key exists then it will return its value
+print(a.get(1,5000)) # one
+# Otherwise the default value provided
+print(a.get(10,20)) # 20
+print(a.get(10)) # None
+
 # ?  To resolve this use defaultDict as shown
 b = defaultdict(lambda: 'default', a)
 print(b["fivee"], b["five"])
