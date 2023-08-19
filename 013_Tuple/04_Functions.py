@@ -17,9 +17,9 @@ max(tuple2)
 # ~ Min of a tuple
 # * The function min returns the item from the tuple with the min value
 min(tuple1)
-Out: 'a'
+# Out: 'a'
 min(tuple2)
-Out: '1'
+# Out: '1'
 
 # ~ Convert a list into tuple
 # * The built-in function tuple converts a list into a tuple.
