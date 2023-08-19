@@ -169,3 +169,24 @@ if not lst:
 print(len(lst))
 
 # * Note that len() is a built-in function, not a method of a list object.
+
+# ~ Shifting a list using slicing
+
+
+def shift_list(array, s):
+    """Shifts the elements of a list to the left or right.
+
+    Args:
+    array - the list to shift
+    s - the amount to shift the list ('+': right-shift, '-': left-shift)
+
+    Returns:
+    shifted_array - the shifted list
+    """
+    # calculate actual shift amount (e.g., 11 --> 1 if length of the array is 5)
+    s %= len(array)
+    # reverse the shift direction to be more intuitive
+    s *= -1
+    # shift array with list slicing
+    shifted_array = array[s:] + array[:s]
+    return shifted_array
