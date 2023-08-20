@@ -22,3 +22,7 @@ iter_list = iter(['Geeks', 'For', 'Geeks'])
 print(next(iter_list))
 print(next(iter_list))
 print(next(iter_list))
+
+iter_list = iter(['Geeks', 'For', 'Geeks'])
+for it in iter_list:
+    print(it)
