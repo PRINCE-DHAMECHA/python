@@ -51,3 +51,5 @@ print(persons)
 by_birthday = attrgetter('birthday')
 persons.sort(key=by_birthday)  # sort by birthday
 print(persons)
+
+#  * sorted() returns a sorted list rather than sorting in-place
