@@ -71,3 +71,82 @@ print(isinstance(s, Rectangle))
 # A square is a rectangle
 print(isinstance(s, Square))
 # Output: True
+
+# ~ Multiple Inheritance
+
+# * Python uses the C3 linearization algorithm to determine the order in which to resolve class attributes, including methods. This is known as the Method Resolution Order (MRO).
+
+
+class Foo(object):
+    foo = 'attr foo of Foo'
+
+
+class Bar(object):
+    foo = 'attr foo of Bar'  # we won't see this.
+    bar = 'attr bar of Bar'
+
+
+class FooBar(Foo, Bar):
+    foobar = 'attr foobar of FooBar'
+
+
+# * Now if we instantiate FooBar, if we look up the foo attribute, we see that Foo's attribute is found first
+fb = FooBar()
+print(fb.foo)  # First one takes priority
+print(FooBar.mro())
+
+# ~ It can be simply stated that Python's MRO algorithm is
+# * 1. Depth first (e.g. FooBar then Foo) unless
+# * 2. a shared parent (object) is blocked by a child (Bar) and
+# * 3. no circular relationships allowed
+# * That is, for example, Bar cannot inherit from FooBar while FooBar inherits from Bar.
+
+# * Another powerful feature in inheritance is super. super can fetch parent classes features.
+
+
+class Foo(object):
+    def foo_method(self):
+        print("foo Method")
+
+
+class Bar(object):
+    def bar_method(self):
+        print("bar Method")
+
+
+class FooBar(Foo, Bar):
+    def foo_method(self):
+        super(FooBar, self).foo_method()
+
+# * Multiple inheritance with init method of class, when every class has own init method then we try for multiple inheritance then only init method get called of class which is inherit first.
+# * for below example only Foo class init method getting called Bar class init not getting called
+
+
+class Foo(object):
+    def __init__(self):
+        print("foo init")
+
+
+class Bar(object):
+    def __init__(self):
+        print("bar init")
+
+
+class FooBar(Foo, Bar):
+    def __init__(self):
+        print("foobar init")
+        super(FooBar, self).__init__()
+
+
+a = FooBar()
+#  foobar init
+#  foo init
+
+# * But it doesn't mean that Bar class is not inherit. Instance of final FooBar class is also instance of Bar class and Foo class
+
+print(isinstance(a, FooBar))
+print(isinstance(a, Foo))
+print(isinstance(a, Bar))
+# True
+# True
+# True
